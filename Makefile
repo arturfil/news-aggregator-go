@@ -1,2 +1,9 @@
+include .env
+ 
+build:
+	go build -o ${BINARY} ./cmd/script/main.go
+
 run:
-	go run ./cmd/script/main.go
+	./${BINARY}
+
+all: build run

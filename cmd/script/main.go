@@ -79,7 +79,7 @@ func saveToDatabase(db *sql.DB, articles []types.Article) error {
     }
 
     savedCount := 0
-    for _, article := range articles {
+    for i, article := range articles {
         // Generate encoded ID from URL
         encodedID := helpers.ConvertURLToBase64ID(article.URL)
         
@@ -91,7 +91,7 @@ func saveToDatabase(db *sql.DB, articles []types.Article) error {
         }
 
         if exists {
-            log.Printf("Skipping article '%s' - already exists", article.Title)
+            log.Printf("Skipping article %d '%s' - already exists", i, article.Title)
             continue
         }
 
@@ -123,7 +123,7 @@ func saveToDatabase(db *sql.DB, articles []types.Article) error {
         return fmt.Errorf("error committing transaction: %v", err)
     }
 
-    log.Printf("Successfully saved %d new articles (skipped %d existing)", 
+    log.Printf("\n\nSuccessfully saved %d new articles (skipped %d existing)", 
         savedCount, len(articles)-savedCount)
     
     return nil

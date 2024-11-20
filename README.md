@@ -16,6 +16,7 @@ Create `.env`:
 DSN=postgresql://postgres:postgres@localhost:5432/legislative_news?sslmode=disable
 NEWS_API_KEY=your_api_key
 ```
+- You can get your api key from https://newsapi.org/
 
 ## Installation
 
